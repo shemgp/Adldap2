@@ -96,11 +96,15 @@ trait HasAttributes
         // We'll normalize the given key to prevent case sensitivity issues.
         $key = $this->normalizeAttributeKey($key);
 
+        $attribute = null;
         if (is_null($subKey) && $this->hasAttribute($key)) {
-            return $this->attributes[$key];
+            $attribute = $this->attributes[$key];
         } elseif ($this->hasAttribute($key, $subKey)) {
-            return $this->attributes[$key][$subKey];
+            $attribute = $this->attributes[$key][$subKey];
         }
+        if (is_array($attribute) && count($attribute) == 1 && isset($attribute[0]))
+            return $attribute[0];
+        return $attribute;
     }
 
     /**

@@ -9,6 +9,7 @@ use Adldap\Schemas\ActiveDirectory;
 use Adldap\Models\Attributes\AccountControl;
 use Adldap\Models\Attributes\TSPropertyArray;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Libraries\AddedUserFunctions;
 
 /**
  * Class User.
@@ -21,7 +22,8 @@ class User extends Entry implements Authenticatable
         Concerns\HasDescription,
         Concerns\HasMemberOf,
         Concerns\HasLastLogonAndLogOff,
-        Concerns\HasUserAccountControl;
+        Concerns\HasUserAccountControl,
+        AddedUserFunctions;
 
     /**
      * Get the name of the unique identifier for the user.
